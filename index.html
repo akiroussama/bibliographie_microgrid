@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bibliographie ciblée 2023-2026 sur la modélisation microgrid MATLAB/Simulink pour la thèse PhD d'Oussama Akir.">
+    <title>Bibliographie ciblée | Microgrid MATLAB/Simulink (2023-2026)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f6f8;
+            --paper: #ffffff;
+            --ink: #182230;
+            --muted: #5f6b7a;
+            --line: #d9e0e7;
+            --primary: #17324d;
+            --primary-soft: #e9eff5;
+            --accent: #2e6da4;
+            --ok: #157347;
+            --ok-soft: #e9f7ef;
+            --warn-soft: #fff4df;
+            --shadow: 0 12px 40px rgba(24, 34, 48, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: "Source Serif 4", Georgia, serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, #eef4fa 0, transparent 28%),
+                radial-gradient(circle at bottom right, #eef2f7 0, transparent 24%),
+                var(--bg);
+            line-height: 1.65;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .page { max-width: 1590px; margin: 0 auto; padding: 32px 20px 64px; }
+
+        .hero {
+            background: linear-gradient(145deg, rgba(23, 50, 77, 0.98), rgba(38, 72, 110, 0.96));
+            color: #fff;
+            border-radius: 24px;
+            padding: 34px 34px 28px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eyebrow, .meta, .nav, th, .chip, .mini-label, .axis-tag, .status, .ref-meta {
+            font-family: "Inter", Arial, sans-serif;
+        }
+
+        .eyebrow {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 700;
+            opacity: 0.82;
+            margin-bottom: 12px;
+        }
+
+        h1, h2, h3 {
+            font-family: "Inter", Arial, sans-serif;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        h1 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.05; max-width: 860px; }
+
+        .hero p {
+            max-width: 900px;
+            font-size: 1.05rem;
+            margin: 16px 0 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .meta { display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .hero-logo {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            max-width: 240px;
+            width: 22vw;
+            min-width: 160px;
+            height: auto;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 18px;
+            padding: 10px 14px;
+            box-shadow: 0 10px 28px rgba(8, 16, 28, 0.18);
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .nav { margin: 18px 0 24px; display: flex; flex-wrap: wrap; gap: 10px; }
+
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.78);
+            color: var(--primary);
+            border: 1px solid var(--line);
+            font-size: 0.92rem;
+            font-weight: 700;
+            box-shadow: 0 2px 10px rgba(24, 34, 48, 0.04);
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 336px minmax(0, 1fr);
+            gap: 22px;
+            margin-top: 24px;
+        }
+
+        .sidebar, .panel {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar {
+            padding: 22px 20px;
+            height: fit-content;
+            position: sticky;
+            top: 18px;
+        }
+
+        .sidebar h2 { font-size: 1.05rem; color: var(--primary); margin-bottom: 14px; }
+
+        .mini-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .sidebar ul { margin: 0 0 18px 18px; padding: 0; }
+        .sidebar li { margin-bottom: 8px; }
+        .sidebar p { margin: 0 0 16px; color: var(--muted); }
+        .legend { display: grid; gap: 10px; }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .swatch { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; }
+        .panel { padding: 28px; }
+        section + section { margin-top: 28px; }
+
+        .section-header { margin-bottom: 16px; }
+        .section-header h2 { font-size: 1.55rem; color: var(--primary); margin-bottom: 8px; }
+        .section-header p { margin: 0; color: var(--muted); }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 18px;
+        }
+
+        .summary-card {
+            border-radius: 18px;
+            padding: 16px;
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, #ffffff, #fbfcfd);
+        }
+
+        .summary-card strong {
+            display: block;
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 1.8rem;
+            line-height: 1;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .summary-card span {
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 0.92rem;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .callout {
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-top: 18px;
+            border: 1px solid transparent;
+        }
+
+        .callout p { margin: 0; }
+        .callout strong { font-family: "Inter", Arial, sans-serif; }
+        .callout.primary { background: var(--primary-soft); border-color: #cfdbe7; }
+        .callout.ok { background: var(--ok-soft); border-color: #cde9d8; }
+        .callout.warn { background: var(--warn-soft); border-color: #f0d8b0; }
+
+        .method-list, .gap-list { margin: 0; padding-left: 22px; }
+        .method-list li, .gap-list li { margin-bottom: 10px; }
+
+        .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 18px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 880px;
+            background: #fff;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid var(--line);
+        }
+
+        th {
+            background: #f7fafc;
+            color: var(--primary);
+            font-size: 0.83rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 800;
+        }
+
+        td { font-family: "Inter", Arial, sans-serif; font-size: 0.94rem; }
+        tr:last-child td { border-bottom: 0; }
+
+        .axis-tag, .status {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .axis-model { background: #e7f0f8; color: #194b74; }
+        .axis-cbf { background: #edf4ec; color: #20613a; }
+        .axis-dt { background: #f1ebf9; color: #5d2c8d; }
+        .axis-rl { background: #fff2e7; color: #9a4f00; }
+        .axis-ieee { background: #eef1f5; color: #37485a; }
+        .status.confirmed { background: var(--ok-soft); color: var(--ok); }
+
+        .axis-block { border-top: 1px solid var(--line); padding-top: 24px; }
+        .axis-block:first-of-type { border-top: 0; padding-top: 0; }
+
+        .axis-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .axis-head h3 { font-size: 1.28rem; color: var(--primary); }
+        .axis-note { margin: 0 0 18px; color: var(--muted); }
+        .refs { display: grid; gap: 14px; }
+
+        .ref-card {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            background: linear-gradient(180deg, #ffffff, #fbfcfe);
+        }
+
+        .ref-title {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .ref-title h4 {
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 1.02rem;
+            line-height: 1.35;
+            margin: 0;
+            color: var(--ink);
+            max-width: 760px;
+        }
+
+        .title-link {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .title-link:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
+        .ref-meta {
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 6px 14px;
+            font-size: 0.92rem;
+            margin-top: 10px;
+        }
+
+        .ref-meta dt { font-weight: 700; color: var(--primary); }
+        .ref-meta dd { margin: 0; color: var(--ink); }
+
+        .ref-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .ref-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: #fff;
+            font-family: "Inter", Arial, sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .footer-note {
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        @media (max-width: 980px) {
+            .layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 640px) {
+            .page { padding: 18px 12px 44px; }
+            .hero, .panel, .sidebar { padding: 20px 18px; border-radius: 18px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .ref-meta { grid-template-columns: 1fr; gap: 2px; }
+            .hero-logo {
+                position: static;
+                display: block;
+                margin: 0 0 16px auto;
+                width: min(220px, 70vw);
+                max-width: none;
+            }
+        }
+
+        @media print {
+            body { background: #fff; }
+            .page { max-width: none; padding: 0; }
+            .hero, .panel, .sidebar { box-shadow: none; border: 1px solid #cfd6de; }
+            .nav { display: none; }
+            .layout { display: block; }
+            .sidebar { margin-bottom: 18px; }
+            a { color: inherit; text-decoration: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="hero">
+            <img class="hero-logo" src="./supcomLogo.png" alt="Logo Sup'Com">
+            <div class="eyebrow">PhD Sup'Com | Bibliographie ciblée pour encadrement académique</div>
+            <h1>Modélisation Microgrid sous MATLAB/Simulink : bibliographie ciblée 2023-2026</h1>
+            <p>
+                Document de travail partageable destiné aux encadrantes. Cette sélection resserrée privilégie les références
+                récentes, vérifiées et directement utiles pour positionner une thèse à l'interface de la modélisation
+                microgrid, des Control Barrier Functions, des digital twins, du safe reinforcement learning et des standards IEEE.
+            </p>
+            <div class="meta">
+                <span class="chip">Auteur: Oussama Akir</span>
+                <span class="chip">Contexte: Meeting #4 Mme Rim Barrak</span>
+                <span class="chip">Fenêtre: 2023-2026 uniquement</span>
+                <span class="chip">Références retenues: 19</span>
+                <span class="chip">Mise à jour: 5 mars 2026</span>
+            </div>
+        </header>
+
+        <nav class="nav">
+            <a href="#resume">Résumé exécutif</a>
+            <a href="#methode">Méthode</a>
+            <a href="#tableau">Tableau synthétique</a>
+            <a href="#references">Références détaillées</a>
+            <a href="#gaps">Gaps et contribution</a>
+        </nav>
+
+        <div class="layout">
+            <aside class="sidebar">
+                <h2>Repères rapides</h2>
+                <div class="mini-label">Ce document apporte</div>
+                <ul>
+                    <li>Une liste courte, vérifiée et partageable.</li>
+                    <li>Des liens DOI ou URL cliquables pour chaque référence.</li>
+                    <li>Une justification de pertinence pour la thèse.</li>
+                    <li>Un positionnement clair des gaps scientifiques.</li>
+                </ul>
+
+                <div class="mini-label">Répartition par axe</div>
+                <div class="legend">
+                    <div class="legend-item"><span class="swatch" style="background:#194b74;"></span> Modélisation MATLAB/Simulink: 4</div>
+                    <div class="legend-item"><span class="swatch" style="background:#20613a;"></span> CBF et sûreté: 4</div>
+                    <div class="legend-item"><span class="swatch" style="background:#5d2c8d;"></span> Digital Twin: 4</div>
+                    <div class="legend-item"><span class="swatch" style="background:#9a4f00;"></span> RL Safety: 4</div>
+                    <div class="legend-item"><span class="swatch" style="background:#37485a;"></span> IEEE / Grid-forming: 3</div>
+                </div>
+            </aside>
+
+            <main class="panel">
+                <section id="resume">
+                    <div class="section-header">
+                        <h2>Résumé exécutif</h2>
+                        <p>
+                            Le corpus récent confirme une dynamique forte sur quatre sous-domaines voisins, mais peu de travaux
+                            les relient dans une même chaîne de validation microgrid sous MATLAB/Simulink.
+                        </p>
+                    </div>
+
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <strong>4</strong>
+                            <span>références explicitement proches de la modélisation MATLAB/Simulink</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong>4</strong>
+                            <span>travaux CBF récents, mais majoritairement mono-contrainte ou non intégrés au RL</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong>4</strong>
+                            <span>références Digital Twin utiles pour le chaînage simulation, HIL et exploitation</span>
+                        </div>
+                        <div class="summary-card">
+                            <strong>19/19</strong>
+                            <span>références retenues avec DOI ou URL vérifiables et statut confirmé</span>
+                        </div>
+                    </div>
+
+                    <div class="callout primary">
+                        <p>
+                            <strong>Lecture académique immédiate.</strong> La littérature 2023-2026 couvre déjà séparément
+                            la modélisation microgrid, la sûreté via CBF, l'optimisation par RL et les digital twins.
+                            En revanche, la combinaison <em>MATLAB/Simulink + Digital Twin + Safe RL + filtre CBF multi-horizon +
+                            validation HIL/Speedgoat</em> reste très peu documentée.
+                        </p>
+                    </div>
+
+                    <div class="callout ok">
+                        <p>
+                            <strong>Conclusion de positionnement.</strong> La thèse peut être présentée comme une contribution
+                            intégrative et non incrémentale: elle relie un environnement de modélisation crédible à une couche
+                            de sûreté formelle et à une stratégie d'apprentissage/commande exploitable expérimentalement.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="methode">
+                    <div class="section-header">
+                        <h2>Méthode de sélection</h2>
+                        <p>
+                            La sélection a été limitée à un maximum de 20 références, avec un filtre temporel strict 2023-2026
+                            et une priorité donnée aux journaux IEEE, Applied Energy, Energy Reports, MDPI ciblés, puis aux
+                            preprints arXiv seulement lorsqu'ils sont directement structurants pour le sujet.
+                        </p>
+                    </div>
+
+                    <ol class="method-list">
+                        <li>Scan local du dépôt pour identifier les références déjà présentes, les fichiers <code>.bib</code> et les synthèses SOTA existantes.</li>
+                        <li>Lecture ciblée des documents sur microgrids, CBF, digital twins, IEEE 1547 et safe RL pour éviter les doublons et faire émerger les manques.</li>
+                        <li>Vérification web des références par DOI, Crossref, pages éditeur, IEEE Xplore, arXiv et pages proceedings lorsque nécessaire.</li>
+                        <li>Élimination des références antérieures à 2023 et des notices non vérifiables ou trop éloignées du besoin doctoral.</li>
+                    </ol>
+
+                    <div class="callout warn">
+                        <p>
+                            <strong>Point méthodologique important.</strong> Le dépôt local était déjà riche en surveys et synthèses
+                            sur CBF, RL et digital twin, mais nettement plus pauvre en travaux 2023-2026 explicitement formulés
+                            autour de <em>MATLAB/Simulink pour la modélisation microgrid</em>. Ce déséquilibre est lui-même un résultat.
+                        </p>
+                    </div>
+                </section>
+
+                <section id="tableau">
+                    <div class="section-header">
+                        <h2>Tableau synthétique des références retenues</h2>
+                        <p>
+                            Le tableau ci-dessous peut être utilisé tel quel en réunion d'encadrement pour une lecture rapide du
+                            périmètre, des axes et de la pertinence des références.
+                        </p>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Titre court</th>
+                                    <th>Année</th>
+                                    <th>Axe</th>
+                                    <th>Pertinence synthétique</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>1</td><td><a class="title-link" href="https://doi.org/10.3390/en18112739">Simulink-SCADA-EMS pre-validation</a></td><td>2025</td><td><span class="axis-tag axis-model">Modélisation</span></td><td>Framework MATLAB/Simulink intégré pour pré-valider un microgrid.</td></tr>
+                                <tr><td>2</td><td><a class="title-link" href="https://doi.org/10.1016/j.egyr.2024.12.071">Distributed MPC frequency regulation</a></td><td>2025</td><td><span class="axis-tag axis-model">Modélisation</span></td><td>Référence utile pour comparer contrôle prédictif classique et filtrage de sûreté.</td></tr>
+                                <tr><td>3</td><td><a class="title-link" href="https://doi.org/10.3390/pr12112535">Droop + ADRC + LSTM</a></td><td>2024</td><td><span class="axis-tag axis-model">Modélisation</span></td><td>Commande microgrid orientée droop avec validation MATLAB.</td></tr>
+                                <tr><td>4</td><td><a class="title-link" href="https://doi.org/10.3390/en17020284">Adaptive current sharing in DC MG</a></td><td>2024</td><td><span class="axis-tag axis-model">Modélisation</span></td><td>Modélisation détaillée de microgrid DC avec partage de courant et tension.</td></tr>
+                                <tr><td>5</td><td><a class="title-link" href="https://arxiv.org/abs/2509.03789">CBF for resilient DC microgrids</a></td><td>2025</td><td><span class="axis-tag axis-cbf">CBF</span></td><td>Travail CBF le plus proche du cœur de thèse, mais en DC et sans HIL.</td></tr>
+                                <tr><td>6</td><td><a class="title-link" href="https://arxiv.org/abs/2409.13890">CBF current limiting for inverters</a></td><td>2024</td><td><span class="axis-tag axis-cbf">CBF</span></td><td>Formulation formelle de sûreté pour onduleurs interfacés réseau.</td></tr>
+                                <tr><td>7</td><td><a class="title-link" href="https://doi.org/10.1109/EESAT62935.2025.10891222">Safety-consensus for GFM storage</a></td><td>2025</td><td><span class="axis-tag axis-cbf">CBF</span></td><td>Sécurité fréquentielle avec bornes proches d'une logique IEEE.</td></tr>
+                                <tr><td>8</td><td><a class="title-link" href="https://doi.org/10.1109/ECCE58356.2025.11259592">CBF during unintended islanding</a></td><td>2025</td><td><span class="axis-tag axis-cbf">CBF</span></td><td>Référence rare sur AC microgrid, islanding et CBF.</td></tr>
+                                <tr><td>9</td><td><a class="title-link" href="https://doi.org/10.3390/su16020482">DT predictive power control</a></td><td>2024</td><td><span class="axis-tag axis-dt">Digital Twin</span></td><td>Point d'appui solide pour le couplage digital twin et HIL.</td></tr>
+                                <tr><td>10</td><td><a class="title-link" href="https://doi.org/10.1038/s41598-025-91074-0">DT forecasting for DC microgrids</a></td><td>2025</td><td><span class="axis-tag axis-dt">Digital Twin</span></td><td>Décision temps réel via jumeau numérique, sans filtre de sûreté formel.</td></tr>
+                                <tr><td>11</td><td><a class="title-link" href="https://doi.org/10.1109/MIC.2024.3488896">Cognitive digital twins for microgrid</a></td><td>2025</td><td><span class="axis-tag axis-dt">Digital Twin</span></td><td>Étude terrain utile pour crédibiliser l'axe exploitation intelligente.</td></tr>
+                                <tr><td>12</td><td><a class="title-link" href="https://doi.org/10.1016/j.apenergy.2024.124621">DT design with experimental validation</a></td><td>2025</td><td><span class="axis-tag axis-dt">Digital Twin</span></td><td>Renforce la dimension validation expérimentale et abstraction système.</td></tr>
+                                <tr><td>13</td><td><a class="title-link" href="https://doi.org/10.1109/TSG.2023.3243170">Safe DRL for microgrid EMS</a></td><td>2023</td><td><span class="axis-tag axis-rl">RL Safety</span></td><td>Référence IEEE de base pour safe DRL appliqué au microgrid.</td></tr>
+                                <tr><td>14</td><td><a class="title-link" href="https://arxiv.org/abs/2407.00304">Safe RL review for power systems</a></td><td>2024</td><td><span class="axis-tag axis-rl">RL Safety</span></td><td>Cadre analytique récent pour positionner l'apport doctoral.</td></tr>
+                                <tr><td>15</td><td><a class="title-link" href="https://doi.org/10.1109/TSG.2025.3569696">Safe RL transient stability + reconfiguration</a></td><td>2025</td><td><span class="axis-tag axis-rl">RL Safety</span></td><td>Safe RL sur microgrid îloté, sans chaîne Simulink-DT-CBF complète.</td></tr>
+                                <tr><td>16</td><td><a class="title-link" href="https://doi.org/10.1016/j.jfranklin.2025.108112">Physics-shielded DRL for EMS</a></td><td>2025</td><td><span class="axis-tag axis-rl">RL Safety</span></td><td>Montre la transition vers des boucliers physiques sans formalisme CBF complet.</td></tr>
+                                <tr><td>17</td><td><a class="title-link" href="https://doi.org/10.1016/j.apenergy.2023.121313">CHIL microgrid controller dispatch</a></td><td>2023</td><td><span class="axis-tag axis-ieee">IEEE</span></td><td>Référence importante pour contrôle microgrid testé en CHIL et aligné standard.</td></tr>
+                                <tr><td>18</td><td><a class="title-link" href="https://doi.org/10.3390/electronics13101958">GFM/GFL control for grid stability</a></td><td>2024</td><td><span class="axis-tag axis-ieee">IEEE</span></td><td>Stabilité et fréquence des onduleurs dans un microgrid moderne.</td></tr>
+                                <tr><td>19</td><td><a class="title-link" href="https://doi.org/10.3390/en19010250">GFL vs GFM under islanding</a></td><td>2026</td><td><span class="axis-tag axis-ieee">IEEE</span></td><td>Très récent pour l'islanding et la comparaison des comportements IBR.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="references">
+                    <div class="section-header">
+                        <h2>Références détaillées par axe</h2>
+                        <p>
+                            Chaque notice inclut les informations bibliographiques essentielles, la raison de sa présence dans
+                            la sélection et un accès direct au DOI ou à la source primaire.
+                        </p>
+                    </div>
+
+                    <div class="axis-block">
+                        <div class="axis-head">
+                            <span class="axis-tag axis-model">Axe 1 · Modélisation</span>
+                            <h3>Microgrid modeling sous MATLAB/Simulink</h3>
+                        </div>
+                        <p class="axis-note">Axe utile pour justifier la base de modélisation et les comparaisons avec des contrôles plus classiques.</p>
+                        <div class="refs">
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[1] The Development of a MATLAB/Simulink-SCADA/EMS-Integrated Framework for Microgrid Pre-Validation</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Seonghyeon Kim, Young-Jin Kim, Sungyun Choi</dd>
+                                    <dt>Journal</dt><dd>Energies</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Référence centrale pour un workflow intégré de pré-validation d'un microgrid dans l'écosystème MATLAB/Simulink.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/en18112739">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[2] Distributed model predictive control strategy for microgrid frequency regulation</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Lakshmi Satya Nagasri Dangeti, Marimuthu R.</dd>
+                                    <dt>Journal</dt><dd>Energy Reports</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Bon point de comparaison pour situer une stratégie CBF face à un contrôle prédictif distribué classique.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1016/j.egyr.2024.12.071">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[3] Improved Droop Control Strategy for Microgrids Based on Auto Disturbance Rejection Control and LSTM</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Hongsheng Su, Zhiwen Dong, Xingsheng Wang</dd>
+                                    <dt>Journal</dt><dd>Processes</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Relie commande droop, adaptation et données séquentielles, avec un angle directement exploitable pour l'axe Simulink.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/pr12112535">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[4] Adaptive Control Approach for Accurate Current Sharing and Voltage Regulation in DC Microgrid Applications</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Mohamed Mesbah, Khairy Sayed, Adel Ahmed, Mahmoud Aref</dd>
+                                    <dt>Journal</dt><dd>Energies</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Référence de modélisation et de commande DC microgrid utile pour compléter le corpus AC plus fréquent dans la thèse.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/en17020284">DOI</a></div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="axis-block">
+                        <div class="axis-head">
+                            <span class="axis-tag axis-cbf">Axe 2 · CBF</span>
+                            <h3>Control Barrier Functions et sûreté pour microgrids / power systems</h3>
+                        </div>
+                        <p class="axis-note">Axe décisif pour justifier l'apport formel de la thèse vis-à-vis des contraintes dures voltage, fréquence et islanding.</p>
+                        <div class="refs">
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[5] Decentralized Safety-Critical Control of Resilient DC Microgrids with Large-Signal Stability Guarantees</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Muratkhan Abdirash, Xiaofan Cui</dd>
+                                    <dt>Source</dt><dd>arXiv preprint</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Travail CBF très proche du cœur de thèse, mais limité au DC, sans intégration RL, digital twin ni validation HIL.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://arxiv.org/abs/2509.03789">arXiv</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[6] Safe Control of Grid-Interfacing Inverters with Current Magnitude Limits</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Trager Joswig-Jones, Baosen Zhang</dd>
+                                    <dt>Source</dt><dd>arXiv preprint</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Montre une formulation CBF claire sur une contrainte physique dure d'onduleur, utile comme brique méthodologique.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://arxiv.org/abs/2409.13890">arXiv</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[7] Coordinated Frequency Regulation in Grid-Forming Storage Network via Safety-Consensus</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Ramij Raja Hossain, Kaustav Chatterjee, et al.</dd>
+                                    <dt>Conference</dt><dd>IEEE EESAT</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Référence forte pour lier sécurité fréquentielle, stockage grid-forming et logique de protection transitoire.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1109/EESAT62935.2025.10891222">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[8] Safety-Critical Control for AC Microgrids with Constant Power Loads During Unintended Islanding via Control Barrier Functions</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Xitong Niu, Chuanlin Zhang, Pengfeng Lin, Zhongkun Cao</dd>
+                                    <dt>Conference</dt><dd>IEEE ECCE</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Référence particulièrement proche du sujet thèse sur AC microgrid, islanding et sûreté formelle par CBF.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1109/ECCE58356.2025.11259592">DOI</a></div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="axis-block">
+                        <div class="axis-head">
+                            <span class="axis-tag axis-dt">Axe 3 · Digital Twin</span>
+                            <h3>Digital twin, simulation temps réel et validation expérimentale</h3>
+                        </div>
+                        <p class="axis-note">Axe utile pour crédibiliser la chaîne simulation-expérimentation et l'adossement futur à Speedgoat / HIL.</p>
+                        <div class="refs">
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[9] Digital Twin of Microgrid for Predictive Power Control to Buildings</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Hao Jiang, Rudy Tjandra, Chew Beng Soh, Shuyu Cao</dd>
+                                    <dt>Journal</dt><dd>Sustainability</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Référence de base pour articuler jumeau numérique, simulation temps réel OPAL-RT et commande prédictive.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/su16020482">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[10] A digital twin based forecasting framework for power flow management in DC microgrids</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Kerry Sado, Jarrett Peskar, Austin Downey, Jamil Khan</dd>
+                                    <dt>Journal</dt><dd>Scientific Reports</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Utile pour l'axe prévisionnel et décisionnel du digital twin, mais sans couche de sûreté CBF.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1038/s41598-025-91074-0">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[11] Cognitive Digital Twins for the Microgrid: A Real-World Study for Intelligent Energy Management and Optimization</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>B. Sivaneasan, Kuan Tak Tan, Wei Zhang</dd>
+                                    <dt>Journal</dt><dd>IEEE Internet Computing</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Important pour sortir d'une logique purement simulation et montrer une plausibilité réelle de l'approche DT.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1109/MIC.2024.3488896">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[12] Novel abstractions and experimental validation for digital twin microgrid design: Lab scale studies and large scale proposals</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Md. Mhamud Hussen Sifat, Safwat Mukarrama Choudhury, et al.</dd>
+                                    <dt>Journal</dt><dd>Applied Energy</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Renforce le positionnement sur la validation expérimentale et la montée en échelle des architectures digital twin.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1016/j.apenergy.2024.124621">DOI</a></div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="axis-block">
+                        <div class="axis-head">
+                            <span class="axis-tag axis-rl">Axe 4 · RL Safety</span>
+                            <h3>Safe reinforcement learning pour microgrids et power systems</h3>
+                        </div>
+                        <p class="axis-note">Axe nécessaire pour montrer que la thèse s'inscrit dans l'état de l'art RL tout en le dépassant par une garantie de sûreté plus forte.</p>
+                        <div class="refs">
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[13] Safe Deep Reinforcement Learning for Microgrid Energy Management in Distribution Networks With Leveraged Spatial–Temporal Perception</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Yujian Ye, Hongru Wang, Peiling Chen, Yi Tang</dd>
+                                    <dt>Journal</dt><dd>IEEE Transactions on Smart Grid</dd>
+                                    <dt>Année</dt><dd>2023</dd>
+                                    <dt>Pertinence</dt><dd>Référence IEEE de socle pour situer la gestion énergétique sécurisée par RL dans les microgrids.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1109/TSG.2023.3243170">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[14] A Review of Safe Reinforcement Learning Methods for Modern Power Systems</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Tong Su, Tong Wu, Junbo Zhao, Anna Scaglione</dd>
+                                    <dt>Source</dt><dd>arXiv preprint</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Permet de formuler proprement le gap entre safe RL générique et contraintes dures spécifiques au microgrid.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://arxiv.org/abs/2407.00304">arXiv</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[15] Safe Reinforcement Learning-Based Transient Stability Control for Islanded Microgrids With Topology Reconfiguration</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Tong Su, Junbo Zhao, Yiyun Yao, Alaa Selim</dd>
+                                    <dt>Journal</dt><dd>IEEE Transactions on Smart Grid</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Très utile pour l'îlotage et la stabilité transitoire, mais sans chaînage complet Simulink + DT + CBF multi-horizon.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1109/TSG.2025.3569696">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[16] Physics-shielded deep reinforcement learning for safe energy management of microgrids with battery health consideration</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Jinlong Yang, Shuwang Du, Pengcheng Chen, Shichao Liu</dd>
+                                    <dt>Journal</dt><dd>Journal of the Franklin Institute</dd>
+                                    <dt>Année</dt><dd>2025</dd>
+                                    <dt>Pertinence</dt><dd>Montre la tendance vers des boucliers physiques, mais sans garanties formelles de type CBF sur l'ensemble des contraintes réseau.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1016/j.jfranklin.2025.108112">DOI</a></div>
+                            </article>
+                        </div>
+                    </div>
+
+                    <div class="axis-block">
+                        <div class="axis-head">
+                            <span class="axis-tag axis-ieee">Axe 5 · IEEE / Grid-forming</span>
+                            <h3>Standards, conformité, islanding et onduleurs grid-forming</h3>
+                        </div>
+                        <p class="axis-note">Axe important pour ancrer la thèse dans des contraintes normatives et dans la réalité des microgrids modernes à forte part d'IBR.</p>
+                        <div class="refs">
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[17] Design and CHIL testing of microgrid controller with general rule-based dispatch</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Chu Sun, Syed Qaseem Ali, Geza Joos, Jean-Nicolas Paquin</dd>
+                                    <dt>Journal</dt><dd>Applied Energy</dd>
+                                    <dt>Année</dt><dd>2023</dd>
+                                    <dt>Pertinence</dt><dd>Référence structurante pour le niveau de validation CHIL et l'alignement avec les standards de contrôle microgrid.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.1016/j.apenergy.2023.121313">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[18] Development of Grid-Forming and Grid-Following Inverter Control in Microgrid Network Ensuring Grid Stability and Frequency Response</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>V. Vignesh Babu, J. Preetha Roselyn, C. Nithya, Prabha Sundaravadivel</dd>
+                                    <dt>Journal</dt><dd>Electronics</dd>
+                                    <dt>Année</dt><dd>2024</dd>
+                                    <dt>Pertinence</dt><dd>Permet d'ancrer la thèse dans les problématiques GFM/GFL, fréquence et stabilité aujourd'hui centrales dans les microgrids.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/electronics13101958">DOI</a></div>
+                            </article>
+
+                            <article class="ref-card">
+                                <div class="ref-title">
+                                    <h4>[19] Performance of Grid-Following and Grid-Forming Inverters Under Unintentional Islanding Events: A Comparative Study</h4>
+                                    <span class="status confirmed">Confirmé</span>
+                                </div>
+                                <dl class="ref-meta">
+                                    <dt>Auteurs</dt><dd>Mohammad Abu Sarhan</dd>
+                                    <dt>Journal</dt><dd>Energies</dd>
+                                    <dt>Année</dt><dd>2026</dd>
+                                    <dt>Pertinence</dt><dd>Référence récente pour cadrer les comportements des IBR sous islanding non intentionnel et appuyer l'argument normatif.</dd>
+                                </dl>
+                                <div class="ref-links"><a href="https://doi.org/10.3390/en19010250">DOI</a></div>
+                            </article>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="gaps">
+                    <div class="section-header">
+                        <h2>Gaps identifiés et positionnement doctoral</h2>
+                        <p>
+                            Cette section synthétise ce que la littérature récente fait déjà, ce qu'elle ne fait pas encore,
+                            et l'espace scientifique précis que la thèse peut revendiquer.
+                        </p>
+                    </div>
+
+                    <ul class="gap-list">
+                        <li><strong>Gap 1.</strong> Les travaux explicitement formulés autour de <em>MATLAB/Simulink + microgrid</em> existent, mais ils restent principalement orientés modélisation, MPC, droop ou intégration EMS, sans couche formelle de sûreté.</li>
+                        <li><strong>Gap 2.</strong> Les travaux CBF les plus proches du sujet portent majoritairement sur des cas DC, mono-contrainte, ou sur des composants isolés comme les onduleurs.</li>
+                        <li><strong>Gap 3.</strong> Les digital twins microgrid traitent bien la prédiction, l'optimisation et parfois le HIL, mais intègrent rarement un filtre de sûreté mathématiquement garanti.</li>
+                        <li><strong>Gap 4.</strong> Les travaux safe RL pour microgrids imposent souvent des contraintes souples, des pénalités ou des shields ad hoc, plutôt qu'une garantie <em>per-step</em> multi-contraintes sur tension, fréquence et états énergétiques.</li>
+                        <li><strong>Gap 5.</strong> Les références normatives et grid-forming cadrent l'islanding et la stabilité, mais pas la combinaison complète <em>Simulink + digital twin + RL + CBF + HIL</em>.</li>
+                    </ul>
+
+                    <div class="callout primary">
+                        <p>
+                            <strong>Positionnement recommandé pour la thèse.</strong> Développer un microgrid MATLAB/Simulink
+                            connecté à une chaîne de validation HIL/Speedgoat, enrichi d'un digital twin et d'un contrôleur
+                            d'apprentissage, mais sécurisé par un filtre <em>MH-U-CBF</em> multi-horizon garantissant le respect
+                            des contraintes dures de tension et de fréquence lors des transitions réseau / îlotage.
+                        </p>
+                    </div>
+
+                    <div class="callout ok">
+                        <p>
+                            <strong>Message à faire passer aux encadrantes.</strong> La valeur de la thèse ne réside pas dans
+                            un nouveau contrôleur isolé, mais dans l'intégration rigoureuse d'un environnement de modélisation
+                            crédible, d'une sûreté formelle et d'une validation expérimentale compatible avec les standards
+                            actuels des microgrids intelligents.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="footer-note">
+                    <p>
+                        Document HTML autonome, conçu pour partage direct, dépôt GitHub ou publication GitHub Pages.
+                        Version source Markdown associée:
+                        <a href="./BIBLIO_MICROGRID_2024.md">BIBLIO_MICROGRID_2024.md</a>.
+                    </p>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('a[href^="https://"]').forEach((link) => {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+        });
+    </script>
+</body>
+</html>
